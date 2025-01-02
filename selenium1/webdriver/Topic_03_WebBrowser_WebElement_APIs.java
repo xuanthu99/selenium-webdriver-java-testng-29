@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -23,7 +24,7 @@ public class Topic_03_WebBrowser_WebElement_APIs {
     @BeforeTest
     public void initData() {
         // Khởi tạo cái browser lên (Mở browser)
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
 
         // Ctrl - Space
 

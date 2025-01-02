@@ -3,6 +3,7 @@ package webdriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -34,7 +35,7 @@ public class Topic_11_Default_Dropdown {
             System.setProperty("webdriver.gecko.driver", projectPath + "/browserDrivers/geckodriver");
         }
 
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         // Nhận driver làm tham số
         // actions = new Actions(driver);
        // expliciWait = new WebDriverWait(driver, Duration.ofSeconds(15));
@@ -44,11 +45,12 @@ public class Topic_11_Default_Dropdown {
     public void TC_01_Facebook_SignUp() {
         driver.get("https://www.facebook.com/r.php?entry_point=login");
 
-        driver.findElement(By.xpath("//select[@id='day']/option["))
+//        // Ko giống hành vi của End User
+//        driver.findElement(By.xpath("//select[@id='day']/option[text()='28']")).click();
 
-//        //dropdown xuất hiện
-//        select = new Select(driver.findElement(By.cssSelector("select#day")));
-//
+        //dropdown xuất hiện
+        select = new Select(driver.findElement(By.cssSelector("select#day")));
+
 //        //select.selectByIndex(20);
 //        // 1.Index
 //        // đọc code ko biết tỉnh nào -> chạy fail khó reproduce lại
@@ -67,12 +69,12 @@ public class Topic_11_Default_Dropdown {
 //        // Ko thay đổi text nếu có đổi
 //        // chạy fail dễ reproduce lại
 //
-//        //Chọn 1 item
-//        select.selectByVisibleText("25");
-//
-//        //Chọn xong verify đã chọn thành công hay chưa?
-//        Assert.assertEquals(select.getFirstSelectedOption().getText(), "25");
-//
+        //Chọn 1 item
+        select.selectByVisibleText("25");
+
+        //Chọn xong verify đã chọn thành công hay chưa?
+        Assert.assertEquals(select.getFirstSelectedOption().getText(), "25");
+
 //        //Verify cái dropdown có phải là multiple select hay không?
 //        //Nếu là multiple -> trả về là true
 //        //Nếu là single -> trả về là false
@@ -81,19 +83,40 @@ public class Topic_11_Default_Dropdown {
 //        //Verify tổng số lượng items trong dropdown này là bao nhiêu?
 //        Assert.assertEquals(select.getOptions().size(),31);
 
+        select = new Select(driver.findElement(By.cssSelector("select#month")));
+        select.selectByVisibleText("Jun");
+        Assert.assertEquals(select.getFirstSelectedOption().getText(), "Jun");
 
+        select = new Select(driver.findElement(By.cssSelector("select#year")));
+        select.selectByVisibleText("2006");
+        Assert.assertEquals(select.getFirstSelectedOption().getText(), "2006");
 
-
-
-        }
+    }
 
     @Test
-    public void TC_02_Url(){
+    public void TC_02_NopCommerce(){
+        driver.get("https://demo.nopcommerce.com/");
+        driver.findElement(By.cssSelector("a.ico-register")).click();
 
-        }
+        driver.findElement(By.cssSelector("input#FirstName")).sendKeys("");
+        driver.findElement(By.cssSelector("input#LastName")).sendKeys("");
+
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthDay']"))).selectByVisibleText("");
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthMonth']"))).selectByVisibleText("");
+        new Select(driver.findElement(By.cssSelector("select[name='DateOfBirthYear']"))).selectByVisibleText("");
+
+        driver.findElement(By.cssSelector("input#Email")).sendKeys("");
+        driver.findElement(By.cssSelector("input#Company")).sendKeys("");
+        driver.findElement(By.cssSelector("input#Password")).sendKeys("");
+        driver.findElement(By.cssSelector("input#ConfỉmPassword")).sendKeys("");
+        driver.findElement(By.cssSelector("button#register-button")).click();
+
+
+
+    }
 
     @AfterClass
     public void afterClass() {
-        //driver.quit();
+        driver.quit();
     }
 }
