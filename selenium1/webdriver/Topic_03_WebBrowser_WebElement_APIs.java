@@ -1,13 +1,10 @@
 package webdriver;
 
-package selenium_api;
-
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -22,9 +19,9 @@ public class Topic_03_WebBrowser_WebElement_APIs {
 
     // Chạy đầu tiên: để mở browser/ khởi tạo data test/ khởi tạo biến/..
     @BeforeTest
-    public void initData() {
+    public void initialBrowser() {
         // Khởi tạo cái browser lên (Mở browser)
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
 
         // Ctrl - Space
 
