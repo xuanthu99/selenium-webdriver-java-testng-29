@@ -40,8 +40,16 @@ public class Topic_06_Wait {
         @Test
         public void TC_01_() {
            // List<WebElement> allitems = driver.findElements(By.cssSelector(""));
-
             explicitWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("")));
 
+            //nội bộ của testcase 1 thôi
+            fluentWait = new FluentWait<WebDriver>(driver);
+
+
         }
+    @Test
+    public void TC_02_() throws InterruptedException {
+            //Thread.sleep("3000");
+        explicitWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("")));
+    }
 }
